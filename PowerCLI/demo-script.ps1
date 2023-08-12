@@ -1,3 +1,5 @@
+<# Retaining but commenting out prior steps
+
 # Connect to a given vCenter server 
 # Using splatting to simplify the inputs for the cmdlet
 $vcsaConnection = @{
@@ -10,6 +12,8 @@ Connect-VIServer @vcsaConnection
 
 # Store information back about a given datacenter in a variable
 $dc = Get-Datacenter -Name "Prob-DC"
+
+#>
 
 # Get information back about a given ESXi host 
 $vmh02 = Get-VMHost -Name "vesxi02.prob.local"
