@@ -40,3 +40,6 @@ resource "vsphere_compute_cluster" "compute_cluster" {
   drs_enabled          = var.cluster_drs_status
   drs_automation_level = "fullyAutomated"
 }
+
+# Modify the cluster by disabling DRS with the following command:
+# terraform apply -var="cluster_drs_status=false"

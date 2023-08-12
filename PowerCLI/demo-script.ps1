@@ -26,3 +26,9 @@ $compute_cluster = New-Cluster @clusterSettings
 
 # Add 2 hosts from prior steps to the new cluster
 Move-VMHost –Destination $compute_cluster –VMHost $vmh02, $vmh03
+
+# Modify the cluster by disabling DRS
+$compute_cluster | Set-Cluster -DrsEnabled:$false
+
+# Restore DRS configuration to enabled
+$compute_cluster | Set-Cluster -DrsEnabled:$true -Confirm:$false
