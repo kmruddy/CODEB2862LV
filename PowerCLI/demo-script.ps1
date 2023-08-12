@@ -1,3 +1,5 @@
+<# Retaining but commenting out prior steps
+
 # Connect to a given vCenter server 
 # Using splatting to simplify the inputs for the cmdlet
 $vcsaConnection = @{
@@ -26,6 +28,8 @@ $compute_cluster = New-Cluster @clusterSettings
 
 # Add 2 hosts from prior steps to the new cluster
 Move-VMHost –Destination $compute_cluster –VMHost $vmh02, $vmh03
+
+#>
 
 # Modify the cluster by disabling DRS
 $compute_cluster | Set-Cluster -DrsEnabled:$false
