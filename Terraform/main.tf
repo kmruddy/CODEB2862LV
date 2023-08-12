@@ -37,13 +37,3 @@ data "vsphere_network" "network" {
   name          = "VM Network"
   datacenter_id = data.vsphere_datacenter.dc.id
 }
-
-# Return information about the discovered datacenter 
-output "dc_info" {
-  value = data.vsphere_datacenter.dc
-}
-
-# Return information about the discovered portgroup
-output "vpg_info" {
-  value = data.vsphere_network.network
-}
