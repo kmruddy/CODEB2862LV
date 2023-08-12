@@ -7,6 +7,7 @@ terraform {
   }
 }
 
+# Connect to a given vCenter server 
 provider "vsphere" {
   user                 = "svc_tf@prob.local"
   password             = "Terraform!23"
@@ -14,6 +15,7 @@ provider "vsphere" {
   allow_unverified_ssl = true
 }
 
+# Describe to Terraform an existing vSphere datacenter
 data "vsphere_datacenter" "dc" {
   name = "Prob-DC"
 }
