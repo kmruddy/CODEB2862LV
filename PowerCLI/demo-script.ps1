@@ -11,17 +11,18 @@ Connect-VIServer @vcsaConnection
 # Store information back about a given datacenter in a variable
 $dc = Get-Datacenter -Name "Prob-DC"
 
-# Output the newly created dc variable
-Write-Output -InputObject $dc 
-
-# Alternatively, save some keystrokes
-$dc
-
 # Get information back about a given ESXi host 
-$vmh01 = Get-VMHost -Name "vesxi00.prob.local"
+$vmh02 = Get-VMHost -Name "vesxi02.prob.local"
+$vmh03 = Get-VMHost -Name "vesxi03.prob.local"
 
-# Get information back about a given datatore 
-$ds = Get-Datastore -Name "nfs-terraform"
+# Create the vSphere cluster
+$clusterSettings = @{
+    Name = "PowerCLIDemoCluster"
+    Location = $dc
+    DRSEnabled = $true
+    DRSAutomationLevel = "FullyAutomated"
+}
+$compute_cluster = New-Cluster @clusterSettings
 
-# Get information back about a given portgroup 
-$vmNet = Get-VirtualPortGroup -Name "VM Network"
+# Add 2 hosts from prior steps to the new cluster
+Move-VMHost –Destination $compute_cluster –VMHost $vmh02, $vmh03

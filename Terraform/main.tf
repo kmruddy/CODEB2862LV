@@ -21,19 +21,22 @@ data "vsphere_datacenter" "dc" {
 }
 
 # Describe to Terraform an existing ESXi host
-data "vsphere_host" "host" {
-  name          = var.vmh_name
+data "vsphere_host" "vmh_zero" {
+  name          = var.vmh_zero
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
-# Describe to Terraform an existing datastore
-data "vsphere_datastore" "datastore" {
-  name          = var.ds_name
+# Describe to Terraform an existing ESXi host
+data "vsphere_host" "vmh_one" {
+  name          = var.vmh_one
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
-# Describe to Terraform an existing portgroup
-data "vsphere_network" "network" {
-  name          = var.pg_name
-  datacenter_id = data.vsphere_datacenter.dc.id
+# Create a vSphere cluster and add 2 hosts via data block
+resource "vsphere_compute_cluster" "compute_cluster" {
+  name                 = var.cluster_name
+  datacenter_id        = data.vsphere_datacenter.dc.id
+  host_system_ids      = [data.vsphere_host.vmh_zero.id, data.vsphere_host.vmh_one.id]
+  drs_enabled          = var.cluster_drs_status
+  drs_automation_level = "fullyAutomated"
 }
