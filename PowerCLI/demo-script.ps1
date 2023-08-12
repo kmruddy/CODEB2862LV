@@ -1,3 +1,5 @@
+<# Retaining but commenting out prior steps
+
 # Connect to a given vCenter server 
 # Using splatting to simplify the inputs for the cmdlet
 $vcsaConnection = @{
@@ -32,6 +34,8 @@ $compute_cluster | Set-Cluster -DrsEnabled:$false
 
 # Restore DRS configuration to enabled
 $compute_cluster | Set-Cluster -DrsEnabled:$true -Confirm:$false
+
+#>
 
 # Deploy a new VM from a provided OVA
 $vmParams = @{
