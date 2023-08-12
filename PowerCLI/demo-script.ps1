@@ -1,3 +1,5 @@
+<# Retaining but commenting out prior steps
+
 # Connect to a given vCenter server 
 # Using splatting to simplify the inputs for the cmdlet
 $vcsaConnection = @{
@@ -45,3 +47,19 @@ Import-VApp @vmParams
 
 # Start the newly provisioned VM
 Start-VM -VM "myAppFromPowerCLI"
+
+#>
+
+# Create a loop to deploy new VMs from a provided OVA and start them
+$vm = @()
+for ($i=1; $i -le 2; $i++) {
+    $vmParams = @{
+        Name = "myAppFromPowerCLI-0${i}"   
+        Source = "../OVA/Tiny_Linux_VM.ova"
+        Location = $compute_cluster
+        VMhost = $vmh02
+        Datastore = $vmh02 | Get-Datastore
+    }
+    $vm += Import-VApp @vmParams
+}
+$vm | Start-VM

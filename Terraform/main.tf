@@ -55,7 +55,10 @@ resource "vsphere_compute_cluster" "compute_cluster" {
 
 # Create a VM from an existing OVA
 resource "vsphere_virtual_machine" "myApp" {
-  name             = "myAppFromTerraform"
+  # count will create as many resources as specified by a loop
+  count = 2
+
+  name             = "myAppFromTerraform-0${count.index}"
   datacenter_id    = data.vsphere_datacenter.dc.id
   datastore_id     = data.vsphere_datastore.ds.id
   resource_pool_id = vsphere_compute_cluster.compute_cluster.resource_pool_id
