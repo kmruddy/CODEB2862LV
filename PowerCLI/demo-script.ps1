@@ -48,8 +48,6 @@ Import-VApp @vmParams
 # Start the newly provisioned VM
 Start-VM -VM "myAppFromPowerCLI"
 
-#>
-
 # Create a loop to deploy new VMs from a provided OVA and start them
 $vm = @()
 for ($i=1; $i -le 2; $i++) {
@@ -63,3 +61,14 @@ for ($i=1; $i -le 2; $i++) {
     $vm += Import-VApp @vmParams
 }
 $vm | Start-VM
+
+#>
+
+# Create a DRS rule to ensure the VMs from the prior step are separated 
+$drsParams = @{
+    Cluster = $compute_cluster 
+    Name = "Keep-those-app-VMs-apart-PowerCLI" 
+    KeepTogether = $false 
+    VM = $vm
+}
+New-DrsRule @drsParams

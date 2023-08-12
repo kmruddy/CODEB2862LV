@@ -78,3 +78,14 @@ resource "vsphere_virtual_machine" "myApp" {
     ip_allocation_policy      = "DHCP"
   }
 }
+
+# Create a DRS rule to ensure the VMs from the prior step are separated 
+resource "vsphere_compute_cluster_vm_anti_affinity_rule" "antirule_app" {
+  name                = "Keep-those-app-VMs-apart-Terraform"
+  compute_cluster_id  = vsphere_compute_cluster.compute_cluster.id
+  virtual_machine_ids = vsphere_virtual_machine.myApp[*].id
+
+  lifecycle {
+    replace_triggered_by = [vsphere_virtual_machine.myApp]
+  }
+}
