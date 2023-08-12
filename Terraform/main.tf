@@ -20,6 +20,18 @@ data "vsphere_datacenter" "dc" {
   name = var.dc_name
 }
 
+# Describe to Terraform an existing datastore
+data "vsphere_datastore" "ds" {
+  name          = var.ds_name
+  datacenter_id = data.vsphere_datacenter.dc.id
+}
+
+# Describe to Terraform an existing portgroup
+data "vsphere_network" "network" {
+  name          = var.pg_name
+  datacenter_id = data.vsphere_datacenter.dc.id
+}
+
 # Describe to Terraform an existing ESXi host
 data "vsphere_host" "vmh_zero" {
   name          = var.vmh_zero
@@ -41,7 +53,6 @@ resource "vsphere_compute_cluster" "compute_cluster" {
   drs_automation_level = "fullyAutomated"
 }
 
-
 # Create a VM from an existing OVA
 resource "vsphere_virtual_machine" "myApp" {
   name             = "myAppFromTerraform"
@@ -58,7 +69,7 @@ resource "vsphere_virtual_machine" "myApp" {
 
   ovf_deploy {
     allow_unverified_ssl_cert = false
-    local_ovf_path            = "..\\OVA\\Tiny_Linux_VM.ova"
+    local_ovf_path            = "../OVA/Tiny_Linux_VM.ova"
     disk_provisioning         = "thin"
     ip_protocol               = "IPV4"
     ip_allocation_policy      = "DHCP"

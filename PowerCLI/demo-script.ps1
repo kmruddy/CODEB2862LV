@@ -32,3 +32,16 @@ $compute_cluster | Set-Cluster -DrsEnabled:$false
 
 # Restore DRS configuration to enabled
 $compute_cluster | Set-Cluster -DrsEnabled:$true -Confirm:$false
+
+# Deploy a new VM from a provided OVA
+$vmParams = @{
+    Name = "myAppFromPowerCLI"   
+    Source = "../OVA/Tiny_Linux_VM.ova"
+    Location = $compute_cluster
+    VMhost = $vmh02
+    Datastore = $vmh02 | Get-Datastore
+}
+Import-VApp @vmParams
+
+# Start the newly provisioned VM
+Start-VM -VM "myAppFromPowerCLI"
