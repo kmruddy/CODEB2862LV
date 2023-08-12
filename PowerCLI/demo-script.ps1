@@ -1,3 +1,5 @@
+<# Retaining but commenting out prior steps
+
 # Connect to a given vCenter server 
 # Using splatting to simplify the inputs for the cmdlet
 $vcsaConnection = @{
@@ -7,6 +9,8 @@ $vcsaConnection = @{
 }
 # Running the cmdlet with associated splatted parameters
 Connect-VIServer @vcsaConnection
+
+#>
 
 # Store information back about a given datacenter in a variable
 $dc = Get-Datacenter -Name "Prob-DC"
