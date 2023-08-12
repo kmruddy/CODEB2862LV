@@ -41,5 +41,26 @@ resource "vsphere_compute_cluster" "compute_cluster" {
   drs_automation_level = "fullyAutomated"
 }
 
-# Modify the cluster by disabling DRS with the following command:
-# terraform apply -var="cluster_drs_status=false"
+
+# Create a VM from an existing OVA
+resource "vsphere_virtual_machine" "myApp" {
+  name             = "myAppFromTerraform"
+  datacenter_id    = data.vsphere_datacenter.dc.id
+  datastore_id     = data.vsphere_datastore.ds.id
+  resource_pool_id = vsphere_compute_cluster.compute_cluster.resource_pool_id
+  host_system_id   = data.vsphere_host.vmh_one.id
+  network_interface {
+    network_id = data.vsphere_network.network.id
+  }
+
+  wait_for_guest_net_timeout = 0
+  wait_for_guest_ip_timeout  = 0
+
+  ovf_deploy {
+    allow_unverified_ssl_cert = false
+    local_ovf_path            = "..\\OVA\\Tiny_Linux_VM.ova"
+    disk_provisioning         = "thin"
+    ip_protocol               = "IPV4"
+    ip_allocation_policy      = "DHCP"
+  }
+}
