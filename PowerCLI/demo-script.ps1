@@ -62,8 +62,6 @@ for ($i=1; $i -le 2; $i++) {
 }
 $vm | Start-VM
 
-#>
-
 # Create a DRS rule to ensure the VMs from the prior step are separated 
 $drsParams = @{
     Cluster = $compute_cluster 
@@ -72,3 +70,6 @@ $drsParams = @{
     VM = $vm
 }
 New-DrsRule @drsParams
+
+#>
+
