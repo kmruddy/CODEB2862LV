@@ -89,3 +89,9 @@ resource "vsphere_compute_cluster_vm_anti_affinity_rule" "antirule_app" {
     replace_triggered_by = [vsphere_virtual_machine.myApp]
   }
 }
+
+# Run the following command, which will result in an error, but still needs to be performed
+# terraform destroy --auto-approve
+
+# Manually set the VMHosts to maintenance mode and remove them from the cluster. 
+# Once completed, re-run the terraform destroy command 

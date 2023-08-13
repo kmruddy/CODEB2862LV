@@ -62,8 +62,6 @@ for ($i=1; $i -le 2; $i++) {
 }
 $vm | Start-VM
 
-#>
-
 # Create a DRS rule to ensure the VMs from the prior step are separated 
 $drsParams = @{
     Cluster = $compute_cluster 
@@ -72,3 +70,13 @@ $drsParams = @{
     VM = $vm
 }
 New-DrsRule @drsParams
+
+#>
+
+# Assumed steps to clean up prior steps
+Get-DrsRule -Name "Keep-those-app-VMs-apart-PowerCLI" -Cluster $compute_cluster | Remove-DrsRule -Confirm:$false
+Stop-VM -VM "myAppFromPowerCLI*" -Confirm:$false | Remove-VM -DeletePermanently -Confirm:$false
+$compute_cluster | Set-Cluster -DrsEnabled:$false -Confirm:$false
+Set-VMHost -VMHost $vmh02, $vmh03 -State Maintenance -Confirm:$false
+Move-VMHost –Destination $dc –VMHost $vmh02, $vmh03 -Confirm:$false
+Remove-Cluster -Cluster $compute_cluster -Confirm:$false
