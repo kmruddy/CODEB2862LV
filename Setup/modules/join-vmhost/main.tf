@@ -33,15 +33,16 @@ resource "vsphere_virtual_machine" "vesxi" {
 
   vapp {
     properties = {
-      "guestinfo.hostname"  = var.hostname,
-      "guestinfo.ipaddress" = var.ipaddress,
-      "guestinfo.netmask"   = "255.255.255.0",
-      "guestinfo.gateway"   = "192.168.1.254",
-      "guestinfo.dns"       = "192.168.1.22",
-      "guestinfo.domain"    = "prob.local",
-      "guestinfo.ntp"       = "us.pool.ntp.org",
-      "guestinfo.password"  = var.host_password,
-      "guestinfo.ssh"       = "True"
+      "guestinfo.hostname"   = var.hostname,
+      "guestinfo.ipaddress"  = var.ipaddress,
+      "guestinfo.netmask"    = "255.255.255.0",
+      "guestinfo.gateway"    = "192.168.1.254",
+      "guestinfo.dns"        = "192.168.1.22",
+      "guestinfo.domain"     = "prob.local",
+      "guestinfo.ntp"        = "us.pool.ntp.org",
+      "guestinfo.password"   = var.host_password,
+      "guestinfo.ssh"        = "True",
+      "guestinfo.createvmfs" = "True"
     }
   }
 
@@ -50,10 +51,16 @@ resource "vsphere_virtual_machine" "vesxi" {
   }
 }
 
-data "vsphere_host_thumbprint" "thumbprint" {
+resource "time_sleep" "wait_vESXi_boot" {
   depends_on = [vsphere_virtual_machine.vesxi]
 
-  address  = vsphere_virtual_machine.vesxi.default_ip_address
+  create_duration = "5m"
+}
+
+data "vsphere_host_thumbprint" "thumbprint" {
+  depends_on = [time_sleep.wait_vESXi_boot]
+
+  address  = var.ipaddress
   insecure = true
 }
 
@@ -67,15 +74,3 @@ resource "vsphere_host" "vesxi" {
   thumbprint = data.vsphere_host_thumbprint.thumbprint.id
   datacenter = var.datacenter_id
 }
-
-# resource "vsphere_vmfs_datastore" "ds" {
-#  name           = "${var.name}-vmfs"
-#  host_system_id = vsphere_host.vesxi.id
-#
-#  disks = [
-#    "mpx.vmhba1:C0:T0:L0",
-#    "mpx.vmhba1:C0:T1:L0",
-#    "mpx.vmhba1:C0:T2:L0",
-#  ]
-#}
-
