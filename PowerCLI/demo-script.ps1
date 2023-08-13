@@ -9,13 +9,13 @@ Get-Datacenter -Name "Prob-DC"
 #>
 
 # Get information back about a given ESXi host 
-Get-VMHost -Name "vesxi00.prob.local"
+Get-VMHost -Name "vesxi02.prob.local"
 
 # Get information back about a given ESXi host from a given datacenter
-Get-VMHost -Name "vesxi00.prob.local" -Location "Prob-DC"
+Get-VMHost -Name "vesxi02.prob.local" -Location "Prob-DC"
 
 # Alternatively 
-Get-Datacenter -Name "Prob-DC" | Get-VMHost -Name "vesxi00.prob.local"
+Get-Datacenter -Name "Prob-DC" | Get-VMHost -Name "vesxi02.prob.local"
 
 # Get information back about a given datatore 
 Get-Datastore -Name "nfs-terraform"
