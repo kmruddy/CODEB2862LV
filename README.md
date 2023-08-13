@@ -1,7 +1,7 @@
 # CODEB2862LV
 VMware Explore Demo Code Repository for Session CODEB2862LV
 
-[<img src="https://www.igel.com/wp-content/uploads/2022/08/exploreblog.png" alt="VMware Explore 2023" width="250">](https://www.vmware.com/explore/us.html)
+[<img src="https://www.igel.com/wp-content/uploads/2022/08/exploreblog.png" alt="VMware Explore 2023" width="400">](https://www.vmware.com/explore/us.html)
 
 Event Link: [VMware Explore 2023 - Las Vegas - CODEB2862LV](https://event.vmware.com/flow/vmware/explore2023lv/content/page/catalog?search=CODEB2862LV)
 
