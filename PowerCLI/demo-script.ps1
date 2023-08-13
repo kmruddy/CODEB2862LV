@@ -22,7 +22,7 @@ Write-Output -InputObject $dc
 $dc
 
 # Get information back about a given ESXi host 
-$vmh01 = Get-VMHost -Name "vesxi00.prob.local"
+$vmh01 = Get-VMHost -Name "vesxi02.prob.local"
 
 # Get information back about a given datatore 
 $ds = Get-Datastore -Name "nfs-terraform"
