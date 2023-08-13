@@ -4,8 +4,8 @@
 # Using splatting to simplify the inputs for the cmdlet
 $vcsaConnection = @{
     Server = "probvcsa01.prob.local"
-    User = "svc_tf@prob.local"
-    Password = "Terraform!23"
+    User = "svc_pcli@prob.local"
+    Password = "VMware1!"
 }
 # Running the cmdlet with associated splatted parameters
 Connect-VIServer @vcsaConnection
