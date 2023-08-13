@@ -73,3 +73,11 @@ New-DrsRule @drsParams
 
 #>
 
+# Number of virtual machines deployed matching the given name
+Get-VM -Name myAppFromPowerCLI* | Measure-Object | Select-Object -Property Count
+
+# Names of virtual machines deployed matching the given name
+Get-VM -Name myAppFromPowerCLI* | Select-Object -Property Name
+
+# Checking to see if the vSphere cluster has DRS enabled
+Get-Cluster -Name PowerCLIDemoCLuster | Select-Object -Property DrsEnabled
