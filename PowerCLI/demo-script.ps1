@@ -1,4 +1,4 @@
-<# Retaining but commenting out prior steps
+# Steps for the whole demo walkthrough 
 
 # Connect to a given vCenter server 
 # Using splatting to simplify the inputs for the cmdlet
@@ -61,8 +61,6 @@ for ($i=1; $i -le 2; $i++) {
     $vm += Import-VApp @vmParams
 }
 $vm | Start-VM
-
-#>
 
 # Create a DRS rule to ensure the VMs from the prior step are separated 
 $drsParams = @{
