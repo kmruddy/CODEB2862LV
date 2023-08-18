@@ -19,7 +19,7 @@ variable "vsphere_datastore" {
 }
 
 variable "vsphere_rp" {
-  default = "Development"
+  default = "Home_Lab"
 }
 
 variable "vsphere_cluster" {
