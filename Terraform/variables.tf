@@ -1,5 +1,5 @@
 variable "vsphere_user" {
-  default = "svc_tf@prob.local"
+  default = "svc_tf@vsphere.local"
   type    = string
 }
 
