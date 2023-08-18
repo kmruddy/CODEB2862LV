@@ -4,7 +4,7 @@
 # Using splatting to simplify the inputs for the cmdlet
 $vcsaConnection = @{
     Server = "probvcsa01.prob.local"
-    User = "svc_pcli@prob.local"
+    User = "svc_pcli@vsphere.local"
     Password = "VMware1!"
 }
 # Running the cmdlet with associated splatted parameters
