@@ -56,7 +56,7 @@ for ($i=1; $i -le 2; $i++) {
         Source = "../OVA/Tiny_Linux_VM.ova"
         Location = $compute_cluster
         VMhost = $vmh02
-        Datastore = $vmh02 | Get-Datastore
+        Datastore = $vmh02 | Get-Datastore -Name "nfs-terraform"
     }
     $vm += Import-VApp @vmParams
 }
