@@ -43,7 +43,7 @@ $vmParams = @{
     Source = "../OVA/Tiny_Linux_VM.ova"
     Location = $compute_cluster
     VMhost = $vmh02
-    Datastore = $vmh02 | Get-Datastore -Name "nfs-terraform"
+    Datastore = $vmh02 | Get-Datastore -Name "datastore-vesxi02"
 }
 Import-VApp @vmParams
 
