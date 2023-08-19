@@ -1,5 +1,5 @@
 variable "vsphere_user" {
-  default = "svc_tf@prob.local"
+  default = "svc_tf@vsphere.local"
 }
 
 variable "vsphere_password" {
@@ -15,11 +15,11 @@ variable "vsphere_dc" {
 }
 
 variable "vsphere_datastore" {
-  default = "vsanDatastore"
+  default = "probsyn01"
 }
 
 variable "vsphere_rp" {
-  default = "Development"
+  default = "Home_Lab"
 }
 
 variable "vsphere_cluster" {
@@ -50,16 +50,4 @@ variable "ovf_url" {
 
 variable "domain" {
   default = "prob.local"
-}
-
-variable "nfs_name" {
-  default = "nfs-terraform"
-}
-
-variable "nfs_host" {
-  default = "192.168.1.125"
-}
-
-variable "nfs_path" {
-  default = "/volume1/lab"
 }

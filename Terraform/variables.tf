@@ -15,5 +15,5 @@ variable "vsphere_dc" {
 }
 
 variable "vsphere_datastore" {
-  default = "vsanDatastore"
+  default = "datastore-vesxi01"
 }
