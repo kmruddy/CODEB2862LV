@@ -9,7 +9,7 @@ terraform {
 
 # Connect to a given vCenter server 
 provider "vsphere" {
-  user                 = "svc_tf@prob.local"
+  user                 = "svc_tf@vsphere.local"
   password             = "Terraform!23"
   vsphere_server       = "probvcsa01.prob.local"
   allow_unverified_ssl = true
