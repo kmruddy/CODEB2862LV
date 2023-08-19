@@ -28,6 +28,11 @@ variable "vmh_one" {
   type    = string
 }
 
+variable "ds_name" {
+  default = "datastore-vesxi01"
+  type    = string
+}
+
 variable "pg_name" {
   default = "VM Network"
   type    = string
