@@ -51,15 +51,3 @@ variable "ovf_url" {
 variable "domain" {
   default = "prob.local"
 }
-
-variable "nfs_name" {
-  default = "nfs-terraform"
-}
-
-variable "nfs_host" {
-  default = "192.168.1.125"
-}
-
-variable "nfs_path" {
-  default = "/volume1/lab"
-}
