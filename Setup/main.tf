@@ -79,12 +79,3 @@ module "join-vmhost" {
   remote_ovf_url       = data.vsphere_ovf_vm_template.ovfRemoteEsxi.remote_ovf_url
   disk_provisioning    = data.vsphere_ovf_vm_template.ovfRemoteEsxi.disk_provisioning
 }
-
-resource "vsphere_nas_datastore" "datastore" {
-  name            = var.nfs_name
-  host_system_ids = module.join-vmhost[*].esx_id
-
-  type         = "NFS"
-  remote_hosts = [var.nfs_host]
-  remote_path  = var.nfs_path
-}
