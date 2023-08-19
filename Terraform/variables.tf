@@ -24,7 +24,7 @@ variable "vmh_name" {
 }
 
 variable "ds_name" {
-  default = "nfs-terraform"
+  default = "datastore-vesxi00"
   type    = string
 }
 

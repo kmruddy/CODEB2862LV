@@ -22,10 +22,10 @@ Write-Output -InputObject $dc
 $dc
 
 # Get information back about a given ESXi host 
-$vmh01 = Get-VMHost -Name "vesxi02.prob.local"
+$vmh02 = Get-VMHost -Name "vesxi02.prob.local"
 
 # Get information back about a given datatore 
-$ds = Get-Datastore -Name "nfs-terraform"
+$ds = Get-Datastore -Name "datastore-vesxi02"
 
 # Get information back about a given portgroup 
 $vmNet = Get-VirtualPortGroup -Name "VM Network"
