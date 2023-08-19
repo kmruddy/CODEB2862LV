@@ -15,7 +15,7 @@ variable "vsphere_dc" {
 }
 
 variable "vsphere_datastore" {
-  default = "vsanDatastore"
+  default = "probsyn01"
 }
 
 variable "vsphere_rp" {
