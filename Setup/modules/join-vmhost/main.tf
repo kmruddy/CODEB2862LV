@@ -42,7 +42,7 @@ resource "vsphere_virtual_machine" "vesxi" {
       "guestinfo.ntp"        = "us.pool.ntp.org",
       "guestinfo.password"   = var.host_password,
       "guestinfo.ssh"        = "True",
-      "guestinfo.createvmfs" = "True"
+      "guestinfo.createvmfs" = "False"
     }
   }
 
@@ -73,4 +73,13 @@ resource "vsphere_host" "vesxi" {
   license    = "00000-00000-00000-00000-00000"
   thumbprint = data.vsphere_host_thumbprint.thumbprint.id
   datacenter = var.datacenter_id
+}
+
+resource "vsphere_vmfs_datastore" "datastore" {
+  name           = "datastore-${var.name}"
+  host_system_id = vsphere_host.vesxi.id
+
+  disks = [
+    "mpx.vmhba0:C0:T2:L0",
+  ]
 }

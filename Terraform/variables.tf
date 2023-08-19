@@ -28,12 +28,6 @@ variable "vmh_one" {
   type    = string
 }
 
-
-variable "ds_name" {
-  default = "nfs-terraform"
-  type    = string
-}
-
 variable "pg_name" {
   default = "VM Network"
   type    = string
