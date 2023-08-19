@@ -28,7 +28,7 @@ data "vsphere_host" "host" {
 
 # Describe to Terraform an existing datastore
 data "vsphere_datastore" "datastore" {
-  name          = "nfs-terraform"
+  name          = "datastore-vesxi00"
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 

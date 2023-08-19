@@ -18,7 +18,7 @@ Get-VMHost -Name "vesxi02.prob.local" -Location "Prob-DC"
 Get-Datacenter -Name "Prob-DC" | Get-VMHost -Name "vesxi02.prob.local"
 
 # Get information back about a given datatore 
-Get-Datastore -Name "nfs-terraform"
+Get-Datastore -Name "datastore-vesxi02"
 
 # Get information back about a given portgroup 
 Get-VirtualPortGroup -Name "VM Network"
