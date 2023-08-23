@@ -12,4 +12,5 @@ Speakers:
 - [Kamen Nikolov](https://github.com/kamennikolov), R&D Manager, VMware
 - [Kyle Ruddy](https://github.com/kmruddy), Director, Technical Marketing, HashiCorp
 
-Recording: < Coming Soon >
+Recording: [Link, via VMware Explore Video Player](https://www.vmware.com/explore/video-library/video-landing.html?sessionid=1685010294521001WtJY&videoId=6335412008112)
+Note: VMware Explore credentials are required, but also free
